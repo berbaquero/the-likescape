@@ -24,8 +24,7 @@ var Image = React.createClass({
 	render() {
 		return (
 			<div>
-				<img className="image"
-					src={this.props.source}
+				<img src={this.props.source}
 					onLoad={this.revealAnimation}
 					style={this.state.styles}/>
 				<div>{this.props.title}</div>

@@ -38,11 +38,16 @@ var Gallery = React.createClass({
 		});
 
 		return (
-			<div className="gallery">
+			<div style={styles}>
 				{images}
 			</div>
 		);
 	}
 });
+
+var styles = {
+	width: 640,
+	margin: '0 auto'
+};
 
 module.exports = Gallery;

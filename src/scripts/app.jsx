@@ -1,8 +1,9 @@
 var React = require('react'),
-	UserToken = require('./UserToken'),
-	// Components
-	LoginButton = require('./LoginButton.jsx'),
-	Gallery = require('./Gallery.jsx');
+	UserToken = require('./UserToken');
+
+// Components
+var LoginButton = require('./components/LoginButton.jsx'),
+	Gallery = require('./components/Gallery.jsx');
 
 var App = React.createClass({
 
@@ -28,4 +29,7 @@ var App = React.createClass({
 	}
 });
 
-React.render(<App/>, document.getElementById('app-container'));
+React.render(
+	<App/>,
+	document.getElementById('app-container')
+);

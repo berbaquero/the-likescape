@@ -1,6 +1,6 @@
 var React = require('react'),
-	URL = require('./URL'),
-	config = require('./Config');
+	URL = require('./../URL'),
+	config = require('./../Config');
 
 var LoginButton = React.createClass({
 

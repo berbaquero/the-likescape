@@ -1,7 +1,7 @@
 {
-	"name": "OogwenkLikes",
+	"name": "The Likeswall",
 	"version": "0.0.0",
-	"description": "Simple Instagram client to browse your Likes media",
+	"description": "Simply browse your Instagram Likes",
 	"main": "index.js",
 	"dependencies": {
 		"6to5ify": "~4.0.0",
@@ -11,7 +11,7 @@
 	},
 	"devDependencies": {},
 	"scripts": {
-		"start": "watchify -t 6to5ify ./src/app.jsx -o ./dist/app.js -v"
+		"start": "watchify -t 6to5ify ./src/scripts/app.jsx -o ./dist/app.js -v"
 	},
 	"author": "Bernardo Baquero Stand",
 	"license": "MIT"

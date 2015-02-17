@@ -3,7 +3,7 @@ var URL = {
 	auth: 'https://api.instagram.com/oauth/authorize?client_id=',
 	redirectParam: '&redirect_uri=',
 	responseType: '&response_type=token',
-	redirect: 'http://the-likeswall.dev/',
+	redirect: 'http://the-likescape.dev/',
 	userLikes: '/users/self/media/liked',
 	accessToken: '?access_token=',
 	count: '&count='

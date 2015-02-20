@@ -4,7 +4,8 @@ var React = require('react'),
 
 // Components
 var	Image = require('./Image.jsx'),
-	MoreButton = require('./MoreButton.jsx');
+	MoreButton = require('./MoreButton.jsx'),
+	ImageModal = require('./ImageModal.jsx');
 
 var Gallery = React.createClass({
 
@@ -19,7 +20,8 @@ var Gallery = React.createClass({
 		return {
 			photos: [],
 			URL: URL.base + URL.userLikes + URL.accessToken +
-			UserToken.key + URL.count + this.props.count
+			UserToken.key + URL.count + this.props.count,
+			modalPhotoURL: ''
 		}
 	},
 
@@ -48,10 +50,24 @@ var Gallery = React.createClass({
 		this.makeRequest(this.state.URL);
 	},
 
+	showModal(photoURL) {
+		this.setState({
+			modalPhotoURL: photoURL
+		});
+	},
+
+	closeModal() {
+		this.setState({
+			modalPhotoURL: ''
+		});
+	},
+
 	render() {
-		var images = this.state.photos.map(function(photo) {
+		var thisComponent = this,
+			images = this.state.photos.map(function(photo) {
 			return (
-				<Image data={photo} />
+				<Image data={photo}
+					onClick={thisComponent.showModal.bind(null, photo.images.standard_resolution.url)} />
 			)
 		});
 
@@ -59,6 +75,8 @@ var Gallery = React.createClass({
 			<div style={this.styles}>
 				{images}
 				<MoreButton onClick={this.loadMore} />
+				<ImageModal photoURL={this.state.modalPhotoURL}
+					onRequestClose={this.closeModal}/>
 			</div>
 		);
 	}

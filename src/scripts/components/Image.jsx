@@ -23,11 +23,12 @@ var Image = React.createClass({
 			'image-wrap video-overlay' : 'image-wrap';
 
 		return (
-			<div className={classes}>
+			<div className={classes} onClick={this.props.onClick}>
 				<img src={data.images.standard_resolution.url}
 					onLoad={this.revealAnimation}
 					className='image-item'
 					style={this.state.styles} />
+
 				<ImageInfo user={data.user}
 					timestamp={data.created_time}
 					location={data.location}

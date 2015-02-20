@@ -18440,7 +18440,8 @@ var React = require("react"),
 
 // Components
 var Image = require("./Image.jsx"),
-    MoreButton = require("./MoreButton.jsx");
+    MoreButton = require("./MoreButton.jsx"),
+    ImageModal = require("./ImageModal.jsx");
 
 var Gallery = React.createClass({
 	displayName: "Gallery",
@@ -18456,7 +18457,8 @@ var Gallery = React.createClass({
 	getInitialState: function getInitialState() {
 		return {
 			photos: [],
-			URL: URL.base + URL.userLikes + URL.accessToken + UserToken.key + URL.count + this.props.count
+			URL: URL.base + URL.userLikes + URL.accessToken + UserToken.key + URL.count + this.props.count,
+			modalPhotoURL: ""
 		};
 	},
 
@@ -18485,23 +18487,39 @@ var Gallery = React.createClass({
 		this.makeRequest(this.state.URL);
 	},
 
+	showModal: function showModal(photoURL) {
+		this.setState({
+			modalPhotoURL: photoURL
+		});
+	},
+
+	closeModal: function closeModal() {
+		this.setState({
+			modalPhotoURL: ""
+		});
+	},
+
 	render: function render() {
-		var images = this.state.photos.map(function (photo) {
-			return React.createElement(Image, { data: photo });
+		var thisComponent = this,
+		    images = this.state.photos.map(function (photo) {
+			return React.createElement(Image, { data: photo,
+				onClick: thisComponent.showModal.bind(null, photo.images.standard_resolution.url) });
 		});
 
 		return React.createElement(
 			"div",
 			{ style: this.styles },
 			images,
-			React.createElement(MoreButton, { onClick: this.loadMore })
+			React.createElement(MoreButton, { onClick: this.loadMore }),
+			React.createElement(ImageModal, { photoURL: this.state.modalPhotoURL,
+				onRequestClose: this.closeModal })
 		);
 	}
 });
 
 module.exports = Gallery;
 
-},{"./../URL":"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js","./../UserToken":"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js","./Image.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx","./MoreButton.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/MoreButton.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx":[function(require,module,exports){
+},{"./../URL":"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js","./../UserToken":"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js","./Image.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx","./ImageModal.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/ImageModal.jsx","./MoreButton.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/MoreButton.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -18531,7 +18549,7 @@ var Image = React.createClass({
 
 		return React.createElement(
 			"div",
-			{ className: classes },
+			{ className: classes, onClick: this.props.onClick },
 			React.createElement("img", { src: data.images.standard_resolution.url,
 				onLoad: this.revealAnimation,
 				className: "image-item",
@@ -18595,7 +18613,44 @@ var ImageInfo = React.createClass({
 
 module.exports = ImageInfo;
 
-},{"./TimeAgo.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/TimeAgo.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/LoginButton.jsx":[function(require,module,exports){
+},{"./TimeAgo.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/TimeAgo.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/ImageModal.jsx":[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+
+var Modal = React.createClass({
+	displayName: "Modal",
+
+
+	getInitialState: function getInitialState() {
+		return {
+			shown: false
+		};
+	},
+
+	killClick: function killClick(ev) {
+		ev.stopPropagation();
+	},
+
+	render: function render() {
+		var photoURL = this.props.photoURL,
+		    style = photoURL ? { display: "block" } : { display: "none" };
+
+		return React.createElement(
+			"div",
+			{ className: "modal",
+				style: style,
+				onClick: this.props.onRequestClose },
+			React.createElement("img", { className: "image-modal",
+				src: photoURL,
+				onClick: this.killClick })
+		);
+	}
+});
+
+module.exports = Modal;
+
+},{"react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/LoginButton.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react"),

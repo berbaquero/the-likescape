@@ -6,7 +6,7 @@ var LoginButton = React.createClass({
 
 	render() {
 		return (
-			<a className="login-button"
+			<a className="btn-simple"
 				href={URL.auth + config.clientID +
 				URL.redirectParam + URL.redirect +
 				URL.responseType}>Login</a>

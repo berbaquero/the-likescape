@@ -14,7 +14,7 @@ var MoreButton = React.createClass({
 	render() {
 		return (
 			<button onClick={this.props.onClick}
-				className='button'
+				className='btn-simple'
 				style={this.styles}>Load More</button>
 		)
 	}

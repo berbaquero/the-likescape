@@ -9,7 +9,7 @@ var LoginButton = React.createClass({
 			<a className="btn-simple"
 				href={URL.auth + config.clientID +
 				URL.redirectParam + URL.redirect +
-				URL.responseType}>Login</a>
+				URL.responseType}>Login with Instagram</a>
 		)
 	}
 });

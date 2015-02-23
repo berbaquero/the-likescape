@@ -24,7 +24,7 @@ var App = React.createClass({
 		if (this.state.authenticated) {
 			return <Gallery count='30' />
 		} else {
-			return <LoginButton/>
+			return <LoginPanel/>
 		}
 	}
 });

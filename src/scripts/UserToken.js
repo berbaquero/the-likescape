@@ -19,6 +19,7 @@ var UserToken = {
 				var userToken = match[1];
 				store.setItem('user:token', userToken);
 				this.key = userToken;
+				this.clear();
 				return true;
 			}
 		}
@@ -33,6 +34,10 @@ var UserToken = {
 			this.key = keyValue;
 		}
 		return this.key;
+	},
+
+	clear() {
+		location.hash = '';
 	}
 };
 

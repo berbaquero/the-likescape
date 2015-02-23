@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
 // Components
-var TimeAgo = require('./TimeAgo.jsx');
+import TimeAgo from './TimeAgo.jsx';
 
 var ImageInfo = React.createClass({
 
@@ -29,4 +29,4 @@ var ImageInfo = React.createClass({
 	}
 });
 
-module.exports = ImageInfo;
+export default ImageInfo;

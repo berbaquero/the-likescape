@@ -36,4 +36,4 @@ var UserToken = {
 	}
 };
 
-module.exports = UserToken;
+export default UserToken;

@@ -1,5 +1,5 @@
-var React = require('react'),
-	TimeSince = require('../TimeSince');
+import React from 'react';
+import TimeSince from '../TimeSince';
 
 var TimeAgo = React.createClass({
 
@@ -13,4 +13,4 @@ var TimeAgo = React.createClass({
 	}
 });
 
-module.exports = TimeAgo;
+export default TimeAgo;

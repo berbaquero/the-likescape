@@ -1,6 +1,6 @@
-var React = require('react'),
-	URL = require('./../URL'),
-	config = require('./../Config');
+import React from 'react';
+import URL from './../URL';
+import config from './../Config';
 
 var LoginButton = React.createClass({
 
@@ -14,4 +14,4 @@ var LoginButton = React.createClass({
 	}
 });
 
-module.exports = LoginButton;
+export default LoginButton;

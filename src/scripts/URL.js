@@ -9,4 +9,4 @@ var URL = {
 	count: '&count='
 };
 
-module.exports = URL;
+export default URL;

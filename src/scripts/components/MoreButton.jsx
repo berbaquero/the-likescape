@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var MoreButton = React.createClass({
 
@@ -20,4 +20,4 @@ var MoreButton = React.createClass({
 	}
 });
 
-module.exports = MoreButton;
+export default MoreButton;

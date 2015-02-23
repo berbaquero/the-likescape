@@ -1,9 +1,9 @@
-var React = require('react'),
-	UserToken = require('./UserToken');
+import React from 'react';
+import UserToken from './UserToken';
 
 // Components
-var LoginButton = require('./components/LoginButton.jsx'),
-	Gallery = require('./components/Gallery.jsx');
+import Gallery from './components/Gallery.jsx';
+import LoginPanel from './components/LoginPanel.jsx';
 
 var App = React.createClass({
 

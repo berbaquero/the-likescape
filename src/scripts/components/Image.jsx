@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var ImageInfo = require('./ImageInfo.jsx');
+// Components
+import ImageInfo from './ImageInfo.jsx';
 
 var Image = React.createClass({
 
@@ -38,4 +39,4 @@ var Image = React.createClass({
 	}
 });
 
-module.exports = Image;
+export default Image;

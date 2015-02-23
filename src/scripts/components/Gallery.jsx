@@ -1,11 +1,11 @@
-var React = require('react'),
-	URL = require('./../URL'),
-	UserToken = require('./../UserToken');
+import React from 'react';
+import URL from './../URL';
+import UserToken from './../UserToken';
 
 // Components
-var	Image = require('./Image.jsx'),
-	MoreButton = require('./MoreButton.jsx'),
-	ImageModal = require('./ImageModal.jsx');
+import Image from './Image.jsx';
+import MoreButton from './MoreButton.jsx';
+import ImageModal from './ImageModal.jsx';
 
 var Gallery = React.createClass({
 
@@ -82,4 +82,4 @@ var Gallery = React.createClass({
 	}
 });
 
-module.exports = Gallery;
+export default Gallery;

@@ -7,6 +7,12 @@ body {
 	font-family: Helvetica Neue, Helvetica, Arial, serif;
 }
 
+header {
+	position: fixed;
+	top: 15px;
+	right: 20px;
+}
+
 .btn-simple {
 	text-decoration: none;
 	font-size: 20px;

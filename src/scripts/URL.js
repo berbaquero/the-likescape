@@ -5,6 +5,7 @@ var URL = {
 	responseType: '&response_type=token',
 	redirect: 'http://the-likescape.dev/',
 	userLikes: '/users/self/media/liked',
+	userInfo: '/users/self/',
 	accessToken: '?access_token=',
 	count: '&count='
 };

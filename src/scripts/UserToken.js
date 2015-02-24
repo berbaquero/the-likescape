@@ -1,4 +1,5 @@
-var store = window.localStorage;
+var store = window.localStorage,
+	userKey = 'user:token';
 
 var UserToken = {
 
@@ -17,7 +18,7 @@ var UserToken = {
 			var match = token.match(/access_token=(.*)/);
 			if (match) {
 				var userToken = match[1];
-				store.setItem('user:token', userToken);
+				store.setItem(userKey, userToken);
 				this.key = userToken;
 				this.clear();
 				return true;
@@ -29,7 +30,7 @@ var UserToken = {
 	},
 
 	get() {
-		var keyValue = store.getItem('user:token');
+		var keyValue = store.getItem(userKey);
 		if (keyValue) {
 			this.key = keyValue;
 		}

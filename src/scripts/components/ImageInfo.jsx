@@ -6,11 +6,13 @@ import TimeAgo from './TimeAgo.jsx';
 var ImageInfo = React.createClass({
 
 	render() {
-		var userName = this.props.user.full_name ?
-			this.props.user.full_name :  this.props.user.username;
-		var locationName;
+		let userName = this.props.user.full_name || this.props.user.username,
+			locationName;
 		if (this.props.location && this.props.location.name) {
-			locationName = <div className="image-location">@ {this.props.location.name}</div>
+			locationName =
+				(<div className="image-location">
+					@ {this.props.location.name}
+				</div>)
 		}
 
 		return (

@@ -11,7 +11,7 @@ var Gallery = React.createClass({
 
 	styles: {
 		width: 800,
-		margin: '0 auto 5em',
+		margin: '0 auto 3em',
 		display: 'flex',
 		flexWrap: 'wrap'
 	},

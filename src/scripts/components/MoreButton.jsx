@@ -3,7 +3,7 @@ import React from 'react';
 var MoreButton = React.createClass({
 
 	styles: {
-		width: '50%',
+		width: '51%',
 		margin: '2em auto'
 	},
 

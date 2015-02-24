@@ -37,6 +37,11 @@ var UserToken = {
 		return this.key;
 	},
 
+	remove() {
+		store.removeItem(userKey);
+		location.reload();
+	},
+
 	clear() {
 		location.hash = '';
 	}

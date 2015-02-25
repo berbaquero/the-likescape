@@ -57,7 +57,7 @@ var Header = React.createClass({
 					onClick={this.signOut}
 					style={this.styles.signOut}
 					title='Sign Out'>
-					<img src='/images/sign-out.svg'
+					<img src='images/sign-out.svg'
 						style={this.styles.signOutIcon}/>
 				</a>
 			</header>

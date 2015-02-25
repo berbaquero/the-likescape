@@ -81,7 +81,7 @@ header {
 
 .video-overlay::after {
 	content: '';
-	background-image: url('/images/play.svg');
+	background-image: url('../../images/play.svg');
 	position: absolute;
 	top: 10px;
 	right: 10px;

@@ -22,7 +22,7 @@ var ImageInfo = React.createClass({
 				{locationName}
 				<a href={this.props.link}
 					target='_black'>
-					<img src='/images/link.svg'
+					<img src='images/link.svg'
 						className='external-link'
 						title='See on Instagram.com'/>
 				</a>

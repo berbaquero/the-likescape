@@ -18628,7 +18628,7 @@ var Header = React.createClass({
 					onClick: this.signOut,
 					style: this.styles.signOut,
 					title: "Sign Out" },
-				React.createElement("img", { src: "/images/sign-out.svg",
+				React.createElement("img", { src: "images/sign-out.svg",
 					style: this.styles.signOutIcon })
 			)
 		);
@@ -18726,7 +18726,7 @@ var ImageInfo = React.createClass({
 				"a",
 				{ href: this.props.link,
 					target: "_black" },
-				React.createElement("img", { src: "/images/link.svg",
+				React.createElement("img", { src: "images/link.svg",
 					className: "external-link",
 					title: "See on Instagram.com" })
 			)

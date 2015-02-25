@@ -18344,6 +18344,7 @@ var URL = {
 	responseType: "&response_type=token",
 	redirect: "http://the-likescape.dev/",
 	userLikes: "/users/self/media/liked",
+	userInfo: "/users/self/",
 	accessToken: "?access_token=",
 	count: "&count="
 };
@@ -18353,7 +18354,8 @@ module.exports = URL;
 },{}],"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js":[function(require,module,exports){
 "use strict";
 
-var store = window.localStorage;
+var store = window.localStorage,
+    userKey = "user:token";
 
 var UserToken = {
 
@@ -18372,8 +18374,9 @@ var UserToken = {
 			var match = token.match(/access_token=(.*)/);
 			if (match) {
 				var userToken = match[1];
-				store.setItem("user:token", userToken);
+				store.setItem(userKey, userToken);
 				this.key = userToken;
+				this.clear();
 				return true;
 			}
 		}
@@ -18383,11 +18386,20 @@ var UserToken = {
 	},
 
 	get: function get() {
-		var keyValue = store.getItem("user:token");
+		var keyValue = store.getItem(userKey);
 		if (keyValue) {
 			this.key = keyValue;
 		}
 		return this.key;
+	},
+
+	remove: function remove() {
+		store.removeItem(userKey);
+		location.reload();
+	},
+
+	clear: function clear() {
+		location.hash = "";
 	}
 };
 
@@ -18396,12 +18408,18 @@ module.exports = UserToken;
 },{}],"/Users/bernardo/Projects/The Likescape/src/scripts/app.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react"),
-    UserToken = require("./UserToken");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
+
+var UserToken = _interopRequire(require("./UserToken"));
 
 // Components
-var LoginButton = require("./components/LoginButton.jsx"),
-    Gallery = require("./components/Gallery.jsx");
+var Header = _interopRequire(require("./components/Header.jsx"));
+
+var Gallery = _interopRequire(require("./components/Gallery.jsx"));
+
+var LoginPanel = _interopRequire(require("./components/LoginPanel.jsx"));
 
 var App = React.createClass({
 	displayName: "App",
@@ -18422,26 +18440,37 @@ var App = React.createClass({
 
 	render: function render() {
 		if (this.state.authenticated) {
-			return React.createElement(Gallery, { count: "30" });
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(Header, null),
+				React.createElement(Gallery, { count: "30" })
+			);
 		} else {
-			return React.createElement(LoginButton, null);
+			return React.createElement(LoginPanel, null);
 		}
 	}
 });
 
 React.render(React.createElement(App, null), document.getElementById("app-container"));
 
-},{"./UserToken":"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js","./components/Gallery.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/Gallery.jsx","./components/LoginButton.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/LoginButton.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/Gallery.jsx":[function(require,module,exports){
+},{"./UserToken":"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js","./components/Gallery.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/Gallery.jsx","./components/Header.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/Header.jsx","./components/LoginPanel.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/LoginPanel.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/Gallery.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react"),
-    URL = require("./../URL"),
-    UserToken = require("./../UserToken");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
+
+var URL = _interopRequire(require("./../URL"));
+
+var UserToken = _interopRequire(require("./../UserToken"));
 
 // Components
-var Image = require("./Image.jsx"),
-    MoreButton = require("./MoreButton.jsx"),
-    ImageModal = require("./ImageModal.jsx");
+var Image = _interopRequire(require("./Image.jsx"));
+
+var MoreButton = _interopRequire(require("./MoreButton.jsx"));
+
+var ImageModal = _interopRequire(require("./ImageModal.jsx"));
 
 var Gallery = React.createClass({
 	displayName: "Gallery",
@@ -18449,7 +18478,7 @@ var Gallery = React.createClass({
 
 	styles: {
 		width: 800,
-		margin: "0 auto 5em",
+		margin: "0 auto 3em",
 		display: "flex",
 		flexWrap: "wrap"
 	},
@@ -18458,7 +18487,9 @@ var Gallery = React.createClass({
 		return {
 			photos: [],
 			URL: URL.base + URL.userLikes + URL.accessToken + UserToken.key + URL.count + this.props.count,
-			modalPhotoURL: ""
+			modalPhotoURL: "",
+			showMoreButton: false,
+			moreButtonText: "Load More"
 		};
 	},
 
@@ -18475,11 +18506,16 @@ var Gallery = React.createClass({
 
 		this.setState({
 			photos: nextPhotos,
-			URL: nextURL
+			URL: nextURL,
+			showMoreButton: true,
+			moreButtonText: "Load More"
 		});
 	},
 
 	loadMore: function loadMore() {
+		this.setState({
+			moreButtonText: "Loading..."
+		});
 		this.makeRequest(this.state.URL);
 	},
 
@@ -18502,15 +18538,18 @@ var Gallery = React.createClass({
 	render: function render() {
 		var thisComponent = this,
 		    images = this.state.photos.map(function (photo) {
+			var imageURL = photo.images.standard_resolution.url;
 			return React.createElement(Image, { data: photo,
-				onClick: thisComponent.showModal.bind(null, photo.images.standard_resolution.url) });
-		});
+				onClick: thisComponent.showModal.bind(null, imageURL) });
+		}),
+		    moreButton = this.state.showMoreButton ? React.createElement(MoreButton, { onClick: this.loadMore,
+			text: this.state.moreButtonText }) : "";
 
 		return React.createElement(
 			"div",
 			{ style: this.styles },
 			images,
-			React.createElement(MoreButton, { onClick: this.loadMore }),
+			moreButton,
 			React.createElement(ImageModal, { photoURL: this.state.modalPhotoURL,
 				onRequestClose: this.closeModal })
 		);
@@ -18519,12 +18558,94 @@ var Gallery = React.createClass({
 
 module.exports = Gallery;
 
-},{"./../URL":"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js","./../UserToken":"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js","./Image.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx","./ImageModal.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/ImageModal.jsx","./MoreButton.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/MoreButton.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx":[function(require,module,exports){
+},{"./../URL":"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js","./../UserToken":"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js","./Image.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx","./ImageModal.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/ImageModal.jsx","./MoreButton.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/MoreButton.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/Header.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
 
-var ImageInfo = require("./ImageInfo.jsx");
+var React = _interopRequire(require("react"));
+
+var URL = _interopRequire(require("./../URL"));
+
+var UserToken = _interopRequire(require("../UserToken"));
+
+var Header = React.createClass({
+	displayName: "Header",
+
+
+	signOut: function signOut(ev) {
+		ev.preventDefault();
+		UserToken.remove();
+	},
+
+	styles: {
+		avatar: {
+			borderRadius: "50%",
+			width: 40,
+			display: "block",
+			marginBottom: 10
+		},
+		signOut: {
+			width: 40,
+			display: "block",
+			textAlign: "center"
+		},
+		signOutIcon: {
+			width: 20
+		}
+	},
+
+
+	getInitialState: function getInitialState() {
+		return {
+			imageURL: "",
+			userName: ""
+		};
+	},
+
+	componentDidMount: function componentDidMount() {
+		var userURL = URL.base + URL.userInfo + URL.accessToken + UserToken.key,
+		    thisComponent = this;
+		JSONP.get(userURL, function (response) {
+			var data = response.data;
+			thisComponent.setState({
+				imageURL: data.profile_picture,
+				userName: data.full_name || data.username
+			});
+		});
+	},
+
+	render: function render() {
+		return React.createElement(
+			"header",
+			null,
+			React.createElement("img", { src: this.state.imageURL,
+				style: this.styles.avatar,
+				title: this.state.userName }),
+			React.createElement(
+				"a",
+				{ href: "#sign-out",
+					onClick: this.signOut,
+					style: this.styles.signOut,
+					title: "Sign Out" },
+				React.createElement("img", { src: "/images/sign-out.svg",
+					style: this.styles.signOutIcon })
+			)
+		);
+	}
+});
+
+module.exports = Header;
+
+},{"../UserToken":"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js","./../URL":"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/Image.jsx":[function(require,module,exports){
+"use strict";
+
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
+
+// Components
+var ImageInfo = _interopRequire(require("./ImageInfo.jsx"));
 
 var Image = React.createClass({
 	displayName: "Image",
@@ -18567,18 +18688,20 @@ module.exports = Image;
 },{"./ImageInfo.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/ImageInfo.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/ImageInfo.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
 
 // Components
-var TimeAgo = require("./TimeAgo.jsx");
+var TimeAgo = _interopRequire(require("./TimeAgo.jsx"));
 
 var ImageInfo = React.createClass({
 	displayName: "ImageInfo",
 
 
 	render: function render() {
-		var userName = this.props.user.full_name ? this.props.user.full_name : this.props.user.username;
-		var locationName;
+		var userName = this.props.user.full_name || this.props.user.username,
+		    locationName = undefined;
 		if (this.props.location && this.props.location.name) {
 			locationName = React.createElement(
 				"div",
@@ -18653,9 +18776,13 @@ module.exports = Modal;
 },{"react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/LoginButton.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react"),
-    URL = require("./../URL"),
-    config = require("./../Config");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
+
+var URL = _interopRequire(require("./../URL"));
+
+var config = _interopRequire(require("./../Config"));
 
 var LoginButton = React.createClass({
 	displayName: "LoginButton",
@@ -18664,40 +18791,90 @@ var LoginButton = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"a",
-			{ className: "login-button",
+			{ className: "btn-simple",
 				href: URL.auth + config.clientID + URL.redirectParam + URL.redirect + URL.responseType },
-			"Login"
+			"Login with Instagram"
 		);
 	}
 });
 
 module.exports = LoginButton;
 
-},{"./../Config":"/Users/bernardo/Projects/The Likescape/src/scripts/Config.js","./../URL":"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/MoreButton.jsx":[function(require,module,exports){
+},{"./../Config":"/Users/bernardo/Projects/The Likescape/src/scripts/Config.js","./../URL":"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/LoginPanel.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
+
+// Components
+var LoginButton = _interopRequire(require("./LoginButton.jsx"));
+
+var LoginPanel = React.createClass({
+	displayName: "LoginPanel",
+
+
+	styles: {
+		panel: {
+			width: 360,
+			margin: "100px auto",
+			textAlign: "center"
+		},
+		heart: {
+			color: "#c6544f"
+		}
+	},
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ style: this.styles.panel },
+			React.createElement(
+				"h1",
+				null,
+				"The Likescape"
+			),
+			React.createElement(LoginButton, null),
+			React.createElement(
+				"p",
+				null,
+				"View all the Instagram pictures you have",
+				React.createElement(
+					"span",
+					{ style: this.styles.heart },
+					" ♥"
+				),
+				"liked."
+			)
+		);
+	}
+});
+
+module.exports = LoginPanel;
+
+},{"./LoginButton.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/LoginButton.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/MoreButton.jsx":[function(require,module,exports){
+"use strict";
+
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
 
 var MoreButton = React.createClass({
 	displayName: "MoreButton",
 
 
 	styles: {
-		borderRadius: 5,
-		border: "0 none",
-		width: "100%",
-		height: "3em",
-		fontSize: "20",
-		marginTop: "1em"
+		width: "51%",
+		margin: "2em auto"
 	},
 
 	render: function render() {
 		return React.createElement(
 			"button",
 			{ onClick: this.props.onClick,
-				className: "button",
+				className: "btn-simple",
 				style: this.styles },
-			"Load More"
+			this.props.text
 		);
 	}
 });
@@ -18707,8 +18884,11 @@ module.exports = MoreButton;
 },{"react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/TimeAgo.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react"),
-    TimeSince = require("../TimeSince");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
+
+var TimeSince = _interopRequire(require("../TimeSince"));
 
 var TimeAgo = React.createClass({
 	displayName: "TimeAgo",

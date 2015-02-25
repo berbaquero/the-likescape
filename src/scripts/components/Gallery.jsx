@@ -21,7 +21,9 @@ var Gallery = React.createClass({
 			photos: [],
 			URL: URL.base + URL.userLikes + URL.accessToken +
 			UserToken.key + URL.count + this.props.count,
-			modalPhotoURL: ''
+			modalPhotoURL: '',
+			showMoreButton: false,
+			moreButtonText: 'Load More'
 		}
 	},
 
@@ -38,11 +40,16 @@ var Gallery = React.createClass({
 
 		this.setState({
 			photos: nextPhotos,
-			URL: nextURL
+			URL: nextURL,
+			showMoreButton: true,
+			moreButtonText: 'Load More'
 		});
 	},
 
 	loadMore() {
+		this.setState({
+			moreButtonText: 'Loading...'
+		});
 		this.makeRequest(this.state.URL);
 	},
 
@@ -63,18 +70,23 @@ var Gallery = React.createClass({
 	},
 
 	render() {
-		var thisComponent = this,
+		let thisComponent = this,
 			images = this.state.photos.map(function(photo) {
-			return (
-				<Image data={photo}
-					onClick={thisComponent.showModal.bind(null, photo.images.standard_resolution.url)} />
-			)
-		});
+				let imageURL = photo.images.standard_resolution.url;
+				return (
+					<Image data={photo}
+						onClick={thisComponent.showModal.bind(null, imageURL)} />
+				)
+			}),
+			moreButton = this.state.showMoreButton ?
+				<MoreButton onClick={this.loadMore}
+					text={this.state.moreButtonText} /> :
+				'';
 
 		return (
 			<div style={this.styles}>
 				{images}
-				<MoreButton onClick={this.loadMore} />
+				{moreButton}
 				<ImageModal photoURL={this.state.modalPhotoURL}
 					onRequestClose={this.closeModal}/>
 			</div>

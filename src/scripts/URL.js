@@ -3,7 +3,7 @@ var URL = {
 	auth: 'https://api.instagram.com/oauth/authorize?client_id=',
 	redirectParam: '&redirect_uri=',
 	responseType: '&response_type=token',
-	redirect: 'http://the-likescape.dev/',
+	redirect: 'http://berbaquero.com/the-likescape/',
 	userLikes: '/users/self/media/liked',
 	userInfo: '/users/self/',
 	accessToken: '?access_token=',

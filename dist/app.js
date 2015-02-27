@@ -18543,15 +18543,16 @@ var Gallery = React.createClass({
 				onClick: thisComponent.showModal.bind(null, imageURL) });
 		}),
 		    moreButton = this.state.showMoreButton ? React.createElement(MoreButton, { onClick: this.loadMore,
-			text: this.state.moreButtonText }) : "";
+			text: this.state.moreButtonText }) : null,
+		    modal = this.state.modalPhotoURL ? React.createElement(ImageModal, { photoURL: this.state.modalPhotoURL,
+			onRequestClose: this.closeModal }) : null;
 
 		return React.createElement(
 			"div",
 			{ style: this.styles },
 			images,
 			moreButton,
-			React.createElement(ImageModal, { photoURL: this.state.modalPhotoURL,
-				onRequestClose: this.closeModal })
+			modal
 		);
 	}
 });
@@ -18745,27 +18746,17 @@ var Modal = React.createClass({
 	displayName: "Modal",
 
 
-	getInitialState: function getInitialState() {
-		return {
-			shown: false
-		};
-	},
-
 	killClick: function killClick(ev) {
 		ev.stopPropagation();
 	},
 
 	render: function render() {
-		var photoURL = this.props.photoURL,
-		    style = photoURL ? { display: "block" } : { display: "none" };
-
 		return React.createElement(
 			"div",
 			{ className: "modal",
-				style: style,
 				onClick: this.props.onRequestClose },
 			React.createElement("img", { className: "image-modal",
-				src: photoURL,
+				src: this.props.photoURL,
 				onClick: this.killClick })
 		);
 	}

@@ -81,14 +81,17 @@ var Gallery = React.createClass({
 			moreButton = this.state.showMoreButton ?
 				<MoreButton onClick={this.loadMore}
 					text={this.state.moreButtonText} /> :
-				'';
+				null,
+			modal = this.state.modalPhotoURL ?
+				<ImageModal photoURL={this.state.modalPhotoURL}
+					onRequestClose={this.closeModal}/> :
+				null;
 
 		return (
 			<div style={this.styles}>
 				{images}
 				{moreButton}
-				<ImageModal photoURL={this.state.modalPhotoURL}
-					onRequestClose={this.closeModal}/>
+				{modal}
 			</div>
 		);
 	}

@@ -7,7 +7,6 @@ var LoginPanel = React.createClass({
 
 	styles: {
 		panel: {
-			width: 360,
 			margin: '100px auto',
 			textAlign: 'center'
 		},

@@ -8,7 +8,13 @@ body {
 }
 
 header {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	-ms-flex-pack: end;
 	justify-content: flex-end;
 }
 
@@ -28,11 +34,11 @@ header {
 	padding: .5em 1em;
 	border: 1px solid #888;
 	color: #444;
-	text-shadow: 0 1px 0px white;
+	text-shadow: 0 1px 0 white;
 	background-image: -webkit-linear-gradient(90deg, #bbb, #eee);
 	background-image: linear-gradient(0deg, #bbb, #eee);
 	border-radius: 4px;
-	box-shadow: inset 0px 2px 0px white, inset 0px -1px 0 #888;
+	box-shadow: inset 0 2px 0 white, inset 0 -1px 0 #888;
 	cursor: pointer;
 }
 
@@ -44,13 +50,18 @@ header {
 .btn-simple:active {
 	background-color: #bbb;
 	background-image: none;
-	box-shadow: inset 0px 1px 0 #888;
+	box-shadow: inset 0 1px 0 #888;
 }
 
 .gallery {
 	max-width: 800px;
 	margin-bottom: 3em;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	padding: 0 5px;
 }
@@ -65,10 +76,12 @@ header {
 
 .image-wrap {
 	width: 50%;
+	-webkit-transition-duration: 300ms;
 	transition-duration: 300ms;
 	position: relative;
 	overflow: hidden;
 	padding: 5px 5px 0 0;
+	cursor: -webkit-zoom-in;
 	cursor: zoom-in;
 }
 
@@ -86,6 +99,7 @@ header {
 	display: block;
 	opacity: 0;
 	max-width: 100%;
+	-webkit-transition: opacity 300ms ease;
 	transition: opacity 300ms ease;
 }
 
@@ -94,7 +108,10 @@ header {
 	position: absolute;
 	bottom: 0;
 	padding: 0 5px 3px;
+	-webkit-transition: -webkit-transform 100ms ease 0s;
 	transition: transform 100ms ease 0s;
+	-webkit-transform: translateY(100%);
+	-ms-transform: translateY(100%);
 	transform: translateY(100%);
 	color: white;
 	font-size: 14px;
@@ -107,6 +124,8 @@ header {
 }
 
 .image-wrap:hover .image-info {
+	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
 	transform: translateY(0%);
 }
 
@@ -124,6 +143,7 @@ header {
 	width: 50px;
 	height: 50px;
 	opacity: .8;
+	-webkit-transition: opacity 100ms;
 	transition: opacity 100ms;
 }
 
@@ -136,6 +156,7 @@ header {
 	right: 0;
 	width: 1.3em;
 	bottom: 2px;
+	-webkit-filter: drop-shadow(0 1px 1px black);
 	filter: drop-shadow(0 1px 1px black);
 }
 
@@ -145,10 +166,12 @@ header {
 	position: fixed;
 	top: 0;
 	left: 0;
+	-webkit-transition-duration: 300ms;
 	transition-duration: 300ms;
 	background-color: rgba(0, 0, 0, .7);
 	opacity: 1;
 	z-index: 9999;
+	cursor: -webkit-zoom-out;
 	cursor: zoom-out;
 }
 
@@ -156,6 +179,8 @@ header {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
 	transform: translateY(-50%) translateX(-50%);
 	max-width: 100%;
 }

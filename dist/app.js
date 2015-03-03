@@ -18476,13 +18476,6 @@ var Gallery = React.createClass({
 	displayName: "Gallery",
 
 
-	styles: {
-		width: 800,
-		margin: "0 auto 3em",
-		display: "flex",
-		flexWrap: "wrap"
-	},
-
 	getInitialState: function getInitialState() {
 		return {
 			photos: [],
@@ -18549,7 +18542,7 @@ var Gallery = React.createClass({
 
 		return React.createElement(
 			"div",
-			{ style: this.styles },
+			{ className: "gallery" },
 			images,
 			moreButton,
 			modal
@@ -18584,12 +18577,14 @@ var Header = React.createClass({
 			borderRadius: "50%",
 			width: 40,
 			display: "block",
-			marginBottom: 10
+			marginBottom: 10,
+			alignSelf: "center"
 		},
 		signOut: {
 			width: 40,
 			display: "block",
-			textAlign: "center"
+			textAlign: "center",
+			alignSelf: "center"
 		},
 		signOutIcon: {
 			width: 20
@@ -18746,18 +18741,13 @@ var Modal = React.createClass({
 	displayName: "Modal",
 
 
-	killClick: function killClick(ev) {
-		ev.stopPropagation();
-	},
-
 	render: function render() {
 		return React.createElement(
 			"div",
 			{ className: "modal",
 				onClick: this.props.onRequestClose },
 			React.createElement("img", { className: "image-modal",
-				src: this.props.photoURL,
-				onClick: this.killClick })
+				src: this.props.photoURL })
 		);
 	}
 });

@@ -8,9 +8,18 @@ body {
 }
 
 header {
-	position: fixed;
-	top: 15px;
-	right: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+@media only screen and (min-width: 940px) {
+
+	header {
+		position: fixed;
+		top: 15px;
+		right: 20px;
+		display: block;
+	}
 }
 
 .btn-simple {
@@ -38,6 +47,22 @@ header {
 	box-shadow: inset 0px 1px 0 #888;
 }
 
+.gallery {
+	max-width: 800px;
+	margin-bottom: 3em;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 5px;
+}
+
+@media only screen and (min-width: 800px) {
+
+	.gallery {
+		margin: 0 auto;
+		padding: 0;
+	}
+}
+
 .image-wrap {
 	width: 50%;
 	transition-duration: 300ms;
@@ -45,6 +70,16 @@ header {
 	overflow: hidden;
 	padding: 5px 5px 0 0;
 	cursor: zoom-in;
+}
+
+@media only screen and (min-width: 1330px) {
+	.gallery {
+		max-width: 1200px;
+	}
+
+	.image-wrap {
+		width: 33.33%;
+	}
 }
 
 .image-item {
@@ -111,7 +146,7 @@ header {
 	top: 0;
 	left: 0;
 	transition-duration: 300ms;
-	background-color: rgba(0,0,0,.7);
+	background-color: rgba(0, 0, 0, .7);
 	opacity: 1;
 	z-index: 9999;
 	cursor: zoom-out;
@@ -122,5 +157,5 @@ header {
 	top: 50%;
 	left: 50%;
 	transform: translateY(-50%) translateX(-50%);
-	cursor: default;
+	max-width: 100%;
 }

@@ -9,13 +9,6 @@ import ImageModal from './ImageModal.jsx';
 
 var Gallery = React.createClass({
 
-	styles: {
-		width: 800,
-		margin: '0 auto 3em',
-		display: 'flex',
-		flexWrap: 'wrap'
-	},
-
 	getInitialState() {
 		return {
 			photos: [],
@@ -88,7 +81,7 @@ var Gallery = React.createClass({
 				null;
 
 		return (
-			<div style={this.styles}>
+			<div className='gallery'>
 				{images}
 				{moreButton}
 				{modal}

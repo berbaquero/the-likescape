@@ -14,12 +14,14 @@ var Header = React.createClass({
 			borderRadius: '50%',
 			width: 40,
 			display: 'block',
-			marginBottom: 10
+			marginBottom: 10,
+			alignSelf: 'center'
 		},
 		signOut: {
 			width: 40,
 			display: 'block',
-			textAlign: 'center'
+			textAlign: 'center',
+			alignSelf: 'center'
 		},
 		signOutIcon: {
 			width: 20

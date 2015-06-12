@@ -25,6 +25,13 @@ const Header = React.createClass({
 		},
 		signOutIcon: {
 			width: 20
+		},
+		options: {
+			display: 'flex'
+		},
+		title: {
+			fontWeight: '500',
+			color: '#748695'
 		}
 	},
 
@@ -51,16 +58,19 @@ const Header = React.createClass({
 	render() {
 		return (
 			<header>
-				<img src={this.state.imageURL}
-					 style={this.styles.avatar}
-					 title={this.state.userName}/>
-				<a href='#sign-out'
-				   onClick={this.signOut}
-				   style={this.styles.signOut}
-				   title='Sign Out'>
-					<img src='images/sign-out.svg'
-						 style={this.styles.signOutIcon}/>
-				</a>
+				<span style={this.styles.title}>The Likescape</span>
+				<div style={this.styles.options}>
+					<img src={this.state.imageURL}
+						 style={this.styles.avatar}
+						 title={this.state.userName}/>
+					<a href='#sign-out'
+					   onClick={this.signOut}
+					   style={this.styles.signOut}
+					   title='Sign Out'>
+						<img src='images/sign-out.svg'
+							 style={this.styles.signOutIcon}/>
+					</a>
+				</div>
 			</header>
 		)
 	}

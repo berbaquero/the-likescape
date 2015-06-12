@@ -18581,6 +18581,13 @@ var Header = React.createClass({
 		},
 		signOutIcon: {
 			width: 20
+		},
+		options: {
+			display: "flex"
+		},
+		title: {
+			fontWeight: "500",
+			color: "#748695"
 		}
 	},
 
@@ -18607,17 +18614,26 @@ var Header = React.createClass({
 		return React.createElement(
 			"header",
 			null,
-			React.createElement("img", { src: this.state.imageURL,
-				style: this.styles.avatar,
-				title: this.state.userName }),
 			React.createElement(
-				"a",
-				{ href: "#sign-out",
-					onClick: this.signOut,
-					style: this.styles.signOut,
-					title: "Sign Out" },
-				React.createElement("img", { src: "images/sign-out.svg",
-					style: this.styles.signOutIcon })
+				"span",
+				{ style: this.styles.title },
+				"The Likescape"
+			),
+			React.createElement(
+				"div",
+				{ style: this.styles.options },
+				React.createElement("img", { src: this.state.imageURL,
+					style: this.styles.avatar,
+					title: this.state.userName }),
+				React.createElement(
+					"a",
+					{ href: "#sign-out",
+						onClick: this.signOut,
+						style: this.styles.signOut,
+						title: "Sign Out" },
+					React.createElement("img", { src: "images/sign-out.svg",
+						style: this.styles.signOutIcon })
+				)
 			)
 		);
 	}

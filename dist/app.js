@@ -18288,11 +18288,9 @@ module.exports = require('./lib/React');
 },{"./lib/React":"/Users/bernardo/Projects/The Likescape/node_modules/react/lib/React.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/Config.js":[function(require,module,exports){
 "use strict";
 
-var config = {
+module.exports = {
 	clientID: "a83f87bc74c94b7ca864d1cf635974f8"
 };
-
-module.exports = config;
 
 },{}],"/Users/bernardo/Projects/The Likescape/src/scripts/TimeSince.js":[function(require,module,exports){
 "use strict";
@@ -18337,7 +18335,7 @@ module.exports = function (epoch) {
 },{}],"/Users/bernardo/Projects/The Likescape/src/scripts/URL.js":[function(require,module,exports){
 "use strict";
 
-var URL = {
+module.exports = {
 	base: "https://api.instagram.com/v1",
 	auth: "https://api.instagram.com/oauth/authorize?client_id=",
 	redirectParam: "&redirect_uri=",
@@ -18349,15 +18347,13 @@ var URL = {
 	count: "&count="
 };
 
-module.exports = URL;
-
 },{}],"/Users/bernardo/Projects/The Likescape/src/scripts/UserToken.js":[function(require,module,exports){
 "use strict";
 
 var store = window.localStorage,
     userKey = "user:token";
 
-var UserToken = {
+module.exports = {
 
 	key: "",
 
@@ -18403,8 +18399,6 @@ var UserToken = {
 	}
 };
 
-module.exports = UserToken;
-
 },{}],"/Users/bernardo/Projects/The Likescape/src/scripts/app.jsx":[function(require,module,exports){
 "use strict";
 
@@ -18414,7 +18408,6 @@ var React = _interopRequire(require("react"));
 
 var UserToken = _interopRequire(require("./UserToken"));
 
-// Components
 var Header = _interopRequire(require("./components/Header.jsx"));
 
 var Gallery = _interopRequire(require("./components/Gallery.jsx"));
@@ -18591,7 +18584,6 @@ var Header = React.createClass({
 		}
 	},
 
-
 	getInitialState: function getInitialState() {
 		return {
 			imageURL: "",
@@ -18640,7 +18632,6 @@ var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["defau
 
 var React = _interopRequire(require("react"));
 
-// Components
 var ImageInfo = _interopRequire(require("./ImageInfo.jsx"));
 
 var Image = React.createClass({
@@ -18666,7 +18657,8 @@ var Image = React.createClass({
 
 		return React.createElement(
 			"div",
-			{ className: classes, onClick: this.props.onClick },
+			{ className: classes,
+				onClick: this.props.onClick },
 			React.createElement("img", { src: data.images.standard_resolution.url,
 				onLoad: this.revealAnimation,
 				className: "image-item",
@@ -18688,7 +18680,6 @@ var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["defau
 
 var React = _interopRequire(require("react"));
 
-// Components
 var TimeAgo = _interopRequire(require("./TimeAgo.jsx"));
 
 var ImageInfo = React.createClass({
@@ -18735,7 +18726,9 @@ module.exports = ImageInfo;
 },{"./TimeAgo.jsx":"/Users/bernardo/Projects/The Likescape/src/scripts/components/TimeAgo.jsx","react":"/Users/bernardo/Projects/The Likescape/node_modules/react/react.js"}],"/Users/bernardo/Projects/The Likescape/src/scripts/components/ImageModal.jsx":[function(require,module,exports){
 "use strict";
 
-var React = require("react");
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
 
 var Modal = React.createClass({
 	displayName: "Modal",
@@ -18769,11 +18762,13 @@ var LoginButton = React.createClass({
 	displayName: "LoginButton",
 
 
+	requestURL: URL.auth + config.clientID + URL.redirectParam + URL.redirect + URL.responseType,
+
 	render: function render() {
 		return React.createElement(
 			"a",
 			{ className: "btn-simple",
-				href: URL.auth + config.clientID + URL.redirectParam + URL.redirect + URL.responseType },
+				href: this.requestURL },
 			"Login with Instagram"
 		);
 	}
@@ -18788,7 +18783,6 @@ var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["defau
 
 var React = _interopRequire(require("react"));
 
-// Components
 var LoginButton = _interopRequire(require("./LoginButton.jsx"));
 
 var LoginPanel = React.createClass({

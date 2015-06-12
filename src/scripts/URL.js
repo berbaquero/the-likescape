@@ -1,4 +1,4 @@
-var URL = {
+export default {
 	base: 'https://api.instagram.com/v1',
 	auth: 'https://api.instagram.com/oauth/authorize?client_id=',
 	redirectParam: '&redirect_uri=',
@@ -9,5 +9,3 @@ var URL = {
 	accessToken: '?access_token=',
 	count: '&count='
 };
-
-export default URL;

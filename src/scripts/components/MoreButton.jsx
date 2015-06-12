@@ -1,6 +1,6 @@
 import React from 'react';
 
-var MoreButton = React.createClass({
+const MoreButton = React.createClass({
 
 	styles: {
 		width: '51%',
@@ -10,8 +10,8 @@ var MoreButton = React.createClass({
 	render() {
 		return (
 			<button onClick={this.props.onClick}
-				className='btn-simple'
-				style={this.styles}>{this.props.text}</button>
+					className='btn-simple'
+					style={this.styles}>{this.props.text}</button>
 		)
 	}
 });

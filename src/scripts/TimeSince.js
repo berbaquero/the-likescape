@@ -1,4 +1,4 @@
-module.exports = function(epoch) {
+export default function(epoch) {
 	var secs = ((new Date()).getTime() / 1000) - epoch;
 	Math.floor(secs);
 	var minutes = secs / 60;

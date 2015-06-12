@@ -1,16 +1,16 @@
-var React = require('react');
+import React from 'react';
 
-var Modal = React.createClass({
+const Modal = React.createClass({
 
 	render() {
 		return (
 			<div className='modal'
-				onClick={this.props.onRequestClose}>
+				 onClick={this.props.onRequestClose}>
 				<img className='image-modal'
-					src={this.props.photoURL} />
+					 src={this.props.photoURL}/>
 			</div>
 		)
 	}
 });
 
-module.exports = Modal;
+export default Modal;

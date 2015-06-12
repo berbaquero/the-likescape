@@ -1,7 +1,7 @@
-var store = window.localStorage,
+const store = window.localStorage,
 	userKey = 'user:token';
 
-var UserToken = {
+export default {
 
 	key: '',
 
@@ -46,5 +46,3 @@ var UserToken = {
 		location.hash = '';
 	}
 };
-
-export default UserToken;

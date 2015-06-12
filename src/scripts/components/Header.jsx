@@ -2,7 +2,7 @@ import React from 'react';
 import URL from './../URL';
 import UserToken from '../UserToken';
 
-var Header = React.createClass({
+const Header = React.createClass({
 
 	signOut(ev) {
 		ev.preventDefault();
@@ -26,8 +26,7 @@ var Header = React.createClass({
 		signOutIcon: {
 			width: 20
 		}
-	}
-	,
+	},
 
 	getInitialState() {
 		return {
@@ -53,14 +52,14 @@ var Header = React.createClass({
 		return (
 			<header>
 				<img src={this.state.imageURL}
-					style={this.styles.avatar}
-					title={this.state.userName}/>
+					 style={this.styles.avatar}
+					 title={this.state.userName}/>
 				<a href='#sign-out'
-					onClick={this.signOut}
-					style={this.styles.signOut}
-					title='Sign Out'>
+				   onClick={this.signOut}
+				   style={this.styles.signOut}
+				   title='Sign Out'>
 					<img src='images/sign-out.svg'
-						style={this.styles.signOutIcon}/>
+						 style={this.styles.signOutIcon}/>
 				</a>
 			</header>
 		)

@@ -1,7 +1,7 @@
 import React from 'react';
 import TimeSince from '../TimeSince';
 
-var TimeAgo = React.createClass({
+const TimeAgo = React.createClass({
 
 	render() {
 

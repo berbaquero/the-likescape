@@ -1,9 +1,7 @@
 import React from 'react';
-
-// Components
 import LoginButton from './LoginButton.jsx';
 
-var LoginPanel = React.createClass({
+const LoginPanel = React.createClass({
 
 	styles: {
 		panel: {
@@ -20,10 +18,11 @@ var LoginPanel = React.createClass({
 			<div style={this.styles.panel}>
 				<h1>The Likescape</h1>
 				<LoginButton/>
+
 				<p>
 					View all the Instagram pictures you have
 					<span style={this.styles.heart}> &hearts;</span>
-					 liked.
+					liked.
 				</p>
 			</div>
 		)

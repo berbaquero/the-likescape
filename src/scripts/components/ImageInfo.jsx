@@ -1,9 +1,7 @@
 import React from 'react';
-
-// Components
 import TimeAgo from './TimeAgo.jsx';
 
-var ImageInfo = React.createClass({
+const ImageInfo = React.createClass({
 
 	render() {
 		let userName = this.props.user.full_name || this.props.user.username,
@@ -18,13 +16,13 @@ var ImageInfo = React.createClass({
 		return (
 			<div className='image-info'>
 				<span className="username">{userName} &sdot; </span>
-				<TimeAgo timestamp={this.props.timestamp} />
+				<TimeAgo timestamp={this.props.timestamp}/>
 				{locationName}
 				<a href={this.props.link}
-					target='_black'>
+				   target='_black'>
 					<img src='images/link.svg'
-						className='external-link'
-						title='See on Instagram.com'/>
+						 className='external-link'
+						 title='See on Instagram.com'/>
 				</a>
 			</div>
 		)

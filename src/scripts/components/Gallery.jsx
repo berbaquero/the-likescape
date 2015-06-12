@@ -7,7 +7,7 @@ import Image from './Image.jsx';
 import MoreButton from './MoreButton.jsx';
 import ImageModal from './ImageModal.jsx';
 
-var Gallery = React.createClass({
+const Gallery = React.createClass({
 
 	getInitialState() {
 		return {
@@ -68,16 +68,16 @@ var Gallery = React.createClass({
 				let imageURL = photo.images.standard_resolution.url;
 				return (
 					<Image data={photo}
-						onClick={thisComponent.showModal.bind(null, imageURL)} />
+						   onClick={thisComponent.showModal.bind(null, imageURL)}/>
 				)
 			}),
 			moreButton = this.state.showMoreButton ?
 				<MoreButton onClick={this.loadMore}
-					text={this.state.moreButtonText} /> :
+							text={this.state.moreButtonText}/> :
 				null,
 			modal = this.state.modalPhotoURL ?
 				<ImageModal photoURL={this.state.modalPhotoURL}
-					onRequestClose={this.closeModal}/> :
+							onRequestClose={this.closeModal}/> :
 				null;
 
 		return (

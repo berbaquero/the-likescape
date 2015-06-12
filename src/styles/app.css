@@ -18,16 +18,6 @@ header {
 	justify-content: flex-end;
 }
 
-@media only screen and (min-width: 940px) {
-
-	header {
-		position: fixed;
-		top: 15px;
-		right: 20px;
-		display: block;
-	}
-}
-
 .btn-simple {
 	text-decoration: none;
 	font-size: 20px;
@@ -54,7 +44,7 @@ header {
 }
 
 .gallery {
-	max-width: 800px;
+	margin-left: 16px;
 	margin-bottom: 3em;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -63,19 +53,14 @@ header {
 	-webkit-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding: 0 5px;
-}
-
-@media only screen and (min-width: 800px) {
-
-	.gallery {
-		margin: 0 auto;
-		padding: 0;
-	}
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
 }
 
 .image-wrap {
-	width: 50%;
+	width: 33%;
 	-webkit-transition-duration: 300ms;
 	transition-duration: 300ms;
 	position: relative;
@@ -83,16 +68,6 @@ header {
 	padding: 16px 16px 0 0;
 	cursor: -webkit-zoom-in;
 	cursor: zoom-in;
-}
-
-@media only screen and (min-width: 1330px) {
-	.gallery {
-		max-width: 1200px;
-	}
-
-	.image-wrap {
-		width: 33.33%;
-	}
 }
 
 .image-item {

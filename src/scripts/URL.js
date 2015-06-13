@@ -3,7 +3,7 @@ export default {
 	auth: 'https://api.instagram.com/oauth/authorize?client_id=',
 	redirectParam: '&redirect_uri=',
 	responseType: '&response_type=token',
-	redirect: 'http://berbaquero.com/the-likescape/',
+	redirect: 'http://the-likescape.berbaquero.com/',
 	userLikes: '/users/self/media/liked',
 	userInfo: '/users/self/',
 	accessToken: '?access_token=',

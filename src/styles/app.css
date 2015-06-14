@@ -21,7 +21,24 @@ header {
 	-ms-flex-align: center;
 	align-items: center;
 	border-bottom: 2px solid #e8f3fc;
-	margin: 0 22px;
+	margin: 0 16px;
+}
+
+@media only screen and (min-width: 580px) {
+	header {
+		margin: 0 22px;
+	}
+}
+
+.header-options {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
 .btn-simple {
@@ -66,15 +83,47 @@ header {
 }
 
 .image-wrap {
-	width: 33%;
-	-webkit-transition-duration: 300ms;
-	transition-duration: 300ms;
 	position: relative;
 	overflow: hidden;
 	padding: 16px 16px 0 0;
 	cursor: -webkit-zoom-in;
 	cursor: zoom-in;
 }
+
+.zoom-4 .image-wrap {
+	width: 100%;
+}
+
+.zoom-3 .image-wrap {
+	width: 50%;
+}
+
+.zoom-2 .image-wrap {
+	width: 33%;
+}
+
+.zoom-1 .image-wrap {
+	width: 25%;
+}
+
+@media only screen and (min-width: 580px) {
+	.zoom-4 .image-wrap {
+		width: 50%;
+	}
+
+	.zoom-3 .image-wrap {
+		width: 33%;
+	}
+
+	.zoom-2 .image-wrap {
+		width: 25%;
+	}
+
+	.zoom-1 .image-wrap {
+		width: 16.5%;
+	}
+}
+
 
 .image-item {
 	display: block;

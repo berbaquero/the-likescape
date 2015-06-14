@@ -26,8 +26,8 @@ const Header = React.createClass({
 		signOutIcon: {
 			width: 20
 		},
-		options: {
-			display: 'flex'
+		range: {
+			width: 64
 		},
 		title: {
 			fontWeight: '500',
@@ -35,10 +35,19 @@ const Header = React.createClass({
 		}
 	},
 
+	handleRangeChange(ev) {
+		const newRange = ev.target.value;
+		this.setState({
+			range: newRange
+		});
+		this.props.onRangeChange(newRange);
+	},
+
 	getInitialState() {
 		return {
 			imageURL: '',
-			userName: ''
+			userName: '',
+			range: this.props.zoom
 		}
 	},
 
@@ -59,14 +68,25 @@ const Header = React.createClass({
 		return (
 			<header>
 				<span style={this.styles.title}>The Likescape</span>
-				<div style={this.styles.options}>
+
+				<input type="range"
+					   min='1'
+					   max='4'
+					   value={this.state.range}
+					   onChange={this.handleRangeChange}
+					   style={this.styles.range}/>
+
+				<div className='header-options'>
+
 					<img src={this.state.imageURL}
 						 style={this.styles.avatar}
 						 title={this.state.userName}/>
+
 					<a href='#sign-out'
 					   onClick={this.signOut}
 					   style={this.styles.signOut}
 					   title='Sign Out'>
+
 						<img src='images/sign-out.svg'
 							 style={this.styles.signOutIcon}/>
 					</a>

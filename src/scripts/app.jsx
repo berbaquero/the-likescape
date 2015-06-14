@@ -8,7 +8,8 @@ const App = React.createClass({
 
 	getInitialState() {
 		return {
-			authenticated: false
+			authenticated: false,
+			galleryZoom: 3
 		}
 	},
 
@@ -19,12 +20,21 @@ const App = React.createClass({
 		});
 	},
 
+	setGalleryZoom(range) {
+		this.setState({
+			galleryZoom: range
+		});
+	},
+
 	render() {
 		if (this.state.authenticated) {
 			return (
 				<div>
-					<Header/>
-					<Gallery count='30' />
+					<Header onRangeChange={this.setGalleryZoom}
+							initialRange={this.state.galleryZoom}/>
+
+					<Gallery count='30'
+							 zoom={this.state.galleryZoom}/>
 				</div>
 			)
 		} else {

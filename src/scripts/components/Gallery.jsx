@@ -64,11 +64,13 @@ const Gallery = React.createClass({
 
 	render() {
 		let thisComponent = this,
-			images = this.state.photos.map(function(photo) {
+			zoomClass = 'zoom-' + thisComponent.props.zoom,
+			images = this.state.photos.map(function(photo, index) {
 				let imageURL = photo.images.standard_resolution.url;
 				return (
 					<Image data={photo}
-						   onClick={thisComponent.showModal.bind(null, imageURL)}/>
+						   onClick={thisComponent.showModal.bind(null, imageURL)}
+						   key={index}/>
 				)
 			}),
 			moreButton = this.state.showMoreButton ?
@@ -81,7 +83,7 @@ const Gallery = React.createClass({
 				null;
 
 		return (
-			<div className='gallery'>
+			<div className={'gallery ' + zoomClass}>
 				{images}
 				{moreButton}
 				{modal}

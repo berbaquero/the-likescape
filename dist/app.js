@@ -18420,7 +18420,8 @@ var App = React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			authenticated: false
+			authenticated: false,
+			galleryZoom: 3
 		};
 	},
 
@@ -18431,13 +18432,21 @@ var App = React.createClass({
 		});
 	},
 
+	setGalleryZoom: function setGalleryZoom(range) {
+		this.setState({
+			galleryZoom: range
+		});
+	},
+
 	render: function render() {
 		if (this.state.authenticated) {
 			return React.createElement(
 				"div",
 				null,
-				React.createElement(Header, null),
-				React.createElement(Gallery, { count: "30" })
+				React.createElement(Header, { onRangeChange: this.setGalleryZoom,
+					initialRange: this.state.galleryZoom }),
+				React.createElement(Gallery, { count: "30",
+					zoom: this.state.galleryZoom })
 			);
 		} else {
 			return React.createElement(LoginPanel, null);
@@ -18523,10 +18532,12 @@ var Gallery = React.createClass({
 
 	render: function render() {
 		var thisComponent = this,
-		    images = this.state.photos.map(function (photo) {
+		    zoomClass = "zoom-" + thisComponent.props.zoom,
+		    images = this.state.photos.map(function (photo, index) {
 			var imageURL = photo.images.standard_resolution.url;
 			return React.createElement(Image, { data: photo,
-				onClick: thisComponent.showModal.bind(null, imageURL) });
+				onClick: thisComponent.showModal.bind(null, imageURL),
+				key: index });
 		}),
 		    moreButton = this.state.showMoreButton ? React.createElement(MoreButton, { onClick: this.loadMore,
 			text: this.state.moreButtonText }) : null,
@@ -18535,7 +18546,7 @@ var Gallery = React.createClass({
 
 		return React.createElement(
 			"div",
-			{ className: "gallery" },
+			{ className: "gallery " + zoomClass },
 			images,
 			moreButton,
 			modal
@@ -18582,8 +18593,8 @@ var Header = React.createClass({
 		signOutIcon: {
 			width: 20
 		},
-		options: {
-			display: "flex"
+		range: {
+			width: 64
 		},
 		title: {
 			fontWeight: "500",
@@ -18591,10 +18602,19 @@ var Header = React.createClass({
 		}
 	},
 
+	handleRangeChange: function handleRangeChange(ev) {
+		var newRange = ev.target.value;
+		this.setState({
+			range: newRange
+		});
+		this.props.onRangeChange(newRange);
+	},
+
 	getInitialState: function getInitialState() {
 		return {
 			imageURL: "",
-			userName: ""
+			userName: "",
+			range: this.props.zoom
 		};
 	},
 
@@ -18619,9 +18639,15 @@ var Header = React.createClass({
 				{ style: this.styles.title },
 				"The Likescape"
 			),
+			React.createElement("input", { type: "range",
+				min: "1",
+				max: "4",
+				value: this.state.range,
+				onChange: this.handleRangeChange,
+				style: this.styles.range }),
 			React.createElement(
 				"div",
-				{ style: this.styles.options },
+				{ className: "header-options" },
 				React.createElement("img", { src: this.state.imageURL,
 					style: this.styles.avatar,
 					title: this.state.userName }),

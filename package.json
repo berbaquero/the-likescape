@@ -9,9 +9,13 @@
 		"react": "~0.12.2",
 		"watchify": "~2.3.0"
 	},
-	"devDependencies": {},
+	"appDir": "./src",
+	"buildDir": "./dist",
 	"scripts": {
-		"start": "watchify -t 6to5ify ./src/scripts/app.jsx -o ./dist/app.js -v"
+		"build-styles": "sass --update --force --style compressed $npm_package_appDir/styles:$npm_package_buildDir",
+		"watch-styles": "sass --watch $npm_package_appDir/styles:$npm_package_buildDir",
+		"watch-scripts": "watchify -t 6to5ify ./src/scripts/app.jsx -o ./dist/app.js -v",
+		"start": "npm run watch-styles & npm run watch-scripts"
 	},
 	"author": "Bernardo Baquero Stand",
 	"license": "MIT"

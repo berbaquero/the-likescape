@@ -18779,7 +18779,7 @@ var Modal = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "modal",
+			{ className: "modal anim-reveal",
 				onClick: this.props.onRequestClose },
 			React.createElement("img", { className: "image-modal",
 				src: this.props.photoURL })

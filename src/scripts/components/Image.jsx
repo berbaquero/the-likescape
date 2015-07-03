@@ -29,11 +29,6 @@ const Image = React.createClass({
 					 onLoad={this.revealAnimation}
 					 className='image-item'
 					 style={this.state.styles}/>
-
-				<ImageInfo user={data.user}
-						   timestamp={data.created_time}
-						   location={data.location}
-						   link={data.link}/>
 			</div>
 		)
 	}

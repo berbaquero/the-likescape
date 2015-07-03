@@ -53,29 +53,3 @@
 	-webkit-transition: opacity 300ms ease;
 	transition: opacity 300ms ease;
 }
-
-.image-info {
-	width: calc(100% - #{$spacing});
-	position: absolute;
-	bottom: 0;
-	padding: 0 5px 3px;
-	-webkit-transition: -webkit-transform 100ms ease 0s;
-	transition: transform 100ms ease 0s;
-	-webkit-transform: translateY(100%);
-	-ms-transform: translateY(100%);
-	transform: translateY(100%);
-	color: white;
-	font-size: 14px;
-	text-shadow: 0 1px 2px black;
-	font-weight: 500;
-}
-
-.image-location {
-	font-size: .8em;
-}
-
-.image-wrap:hover .image-info {
-	-webkit-transform: translateY(0%);
-	-ms-transform: translateY(0%);
-	transform: translateY(0%);
-}

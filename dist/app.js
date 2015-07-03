@@ -18340,7 +18340,7 @@ module.exports = {
 	auth: "https://api.instagram.com/oauth/authorize?client_id=",
 	redirectParam: "&redirect_uri=",
 	responseType: "&response_type=token",
-	redirect: "http://the-likescape.berbaquero.com/",
+	redirect: "http://the-likescape.192.168.2.5.xip.io/",
 	userLikes: "/users/self/media/liked",
 	userInfo: "/users/self/",
 	accessToken: "?access_token=",
@@ -18421,7 +18421,7 @@ var App = React.createClass({
 	getInitialState: function getInitialState() {
 		return {
 			authenticated: false,
-			galleryZoom: 3
+			galleryZoom: 2
 		};
 	},
 
@@ -18445,7 +18445,7 @@ var App = React.createClass({
 				null,
 				React.createElement(Header, { onRangeChange: this.setGalleryZoom,
 					initialRange: this.state.galleryZoom }),
-				React.createElement(Gallery, { count: "30",
+				React.createElement(Gallery, { count: "32",
 					zoom: this.state.galleryZoom })
 			);
 		} else {
@@ -18581,7 +18581,6 @@ var Header = React.createClass({
 			borderRadius: "50%",
 			width: 40,
 			display: "block",
-			marginBottom: 10,
 			alignSelf: "center"
 		},
 		signOut: {
@@ -18614,7 +18613,7 @@ var Header = React.createClass({
 		return {
 			imageURL: "",
 			userName: "",
-			range: this.props.zoom
+			range: this.props.initialRange
 		};
 	},
 
@@ -18635,30 +18634,34 @@ var Header = React.createClass({
 			"header",
 			null,
 			React.createElement(
-				"span",
-				{ style: this.styles.title },
-				"The Likescape"
-			),
-			React.createElement("input", { type: "range",
-				min: "1",
-				max: "4",
-				value: this.state.range,
-				onChange: this.handleRangeChange,
-				style: this.styles.range }),
-			React.createElement(
 				"div",
-				{ className: "header-options" },
-				React.createElement("img", { src: this.state.imageURL,
-					style: this.styles.avatar,
-					title: this.state.userName }),
+				{ className: "header-wrapper" },
 				React.createElement(
-					"a",
-					{ href: "#sign-out",
-						onClick: this.signOut,
-						style: this.styles.signOut,
-						title: "Sign Out" },
-					React.createElement("img", { src: "images/sign-out.svg",
-						style: this.styles.signOutIcon })
+					"span",
+					{ style: this.styles.title },
+					"The Likescape"
+				),
+				React.createElement("input", { type: "range",
+					min: "1",
+					max: "4",
+					value: this.state.range,
+					onChange: this.handleRangeChange,
+					style: this.styles.range }),
+				React.createElement(
+					"div",
+					{ className: "header-options" },
+					React.createElement("img", { src: this.state.imageURL,
+						style: this.styles.avatar,
+						title: this.state.userName }),
+					React.createElement(
+						"a",
+						{ href: "#sign-out",
+							onClick: this.signOut,
+							style: this.styles.signOut,
+							title: "Sign Out" },
+						React.createElement("img", { src: "images/sign-out.svg",
+							style: this.styles.signOutIcon })
+					)
 				)
 			)
 		);
@@ -18704,11 +18707,7 @@ var Image = React.createClass({
 			React.createElement("img", { src: data.images.standard_resolution.url,
 				onLoad: this.revealAnimation,
 				className: "image-item",
-				style: this.state.styles }),
-			React.createElement(ImageInfo, { user: data.user,
-				timestamp: data.created_time,
-				location: data.location,
-				link: data.link })
+				style: this.state.styles })
 		);
 	}
 });

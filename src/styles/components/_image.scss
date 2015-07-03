@@ -1,0 +1,81 @@
+@import "../globals";
+
+.image-wrap {
+	position: relative;
+	overflow: hidden;
+	margin: $spacing $spacing 0 0;
+	cursor: -webkit-zoom-in;
+	cursor: zoom-in;
+
+	.zoom-4 & {
+		width: calc(100% - #{$spacing});
+	}
+
+	.zoom-3 & {
+		width: calc(50% - #{$spacing});
+	}
+
+	.zoom-2 & {
+		width: calc(33% - #{$spacing});
+	}
+
+	.zoom-1 & {
+		width: calc(25% - #{$spacing});
+	}
+}
+
+@media only screen and (min-width: 580px) {
+
+	.image-wrap {
+
+		.zoom-4 & {
+			width: calc(50% - #{$spacing});
+		}
+
+		.zoom-3 & {
+			width: calc(33% - #{$spacing});
+		}
+
+		.zoom-2 & {
+			width: calc(25% - #{$spacing});
+		}
+
+		.zoom-1 & {
+			width: calc(16.5% - #{$spacing});
+		}
+	}
+}
+
+.image-item {
+	display: block;
+	opacity: 0;
+	max-width: 100%;
+	-webkit-transition: opacity 300ms ease;
+	transition: opacity 300ms ease;
+}
+
+.image-info {
+	width: calc(100% - #{$spacing});
+	position: absolute;
+	bottom: 0;
+	padding: 0 5px 3px;
+	-webkit-transition: -webkit-transform 100ms ease 0s;
+	transition: transform 100ms ease 0s;
+	-webkit-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	transform: translateY(100%);
+	color: white;
+	font-size: 14px;
+	text-shadow: 0 1px 2px black;
+	font-weight: 500;
+}
+
+.image-location {
+	font-size: .8em;
+}
+
+.image-wrap:hover .image-info {
+	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	transform: translateY(0%);
+}

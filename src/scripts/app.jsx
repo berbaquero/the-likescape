@@ -9,7 +9,7 @@ const App = React.createClass({
 	getInitialState() {
 		return {
 			authenticated: false,
-			galleryZoom: 3
+			galleryZoom: 2
 		}
 	},
 
@@ -33,7 +33,7 @@ const App = React.createClass({
 					<Header onRangeChange={this.setGalleryZoom}
 							initialRange={this.state.galleryZoom}/>
 
-					<Gallery count='30'
+					<Gallery count='32'
 							 zoom={this.state.galleryZoom}/>
 				</div>
 			)

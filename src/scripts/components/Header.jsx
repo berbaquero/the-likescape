@@ -14,7 +14,6 @@ const Header = React.createClass({
 			borderRadius: '50%',
 			width: 40,
 			display: 'block',
-			marginBottom: 10,
 			alignSelf: 'center'
 		},
 		signOut: {
@@ -47,7 +46,7 @@ const Header = React.createClass({
 		return {
 			imageURL: '',
 			userName: '',
-			range: this.props.zoom
+			range: this.props.initialRange
 		}
 	},
 
@@ -67,29 +66,31 @@ const Header = React.createClass({
 	render() {
 		return (
 			<header>
-				<span style={this.styles.title}>The Likescape</span>
+				<div className='header-wrapper'>
+					<span style={this.styles.title}>The Likescape</span>
 
-				<input type="range"
-					   min='1'
-					   max='4'
-					   value={this.state.range}
-					   onChange={this.handleRangeChange}
-					   style={this.styles.range}/>
+					<input type="range"
+						   min='1'
+						   max='4'
+						   value={this.state.range}
+						   onChange={this.handleRangeChange}
+						   style={this.styles.range}/>
 
-				<div className='header-options'>
+					<div className='header-options'>
 
-					<img src={this.state.imageURL}
-						 style={this.styles.avatar}
-						 title={this.state.userName}/>
+						<img src={this.state.imageURL}
+							 style={this.styles.avatar}
+							 title={this.state.userName}/>
 
-					<a href='#sign-out'
-					   onClick={this.signOut}
-					   style={this.styles.signOut}
-					   title='Sign Out'>
+						<a href='#sign-out'
+						   onClick={this.signOut}
+						   style={this.styles.signOut}
+						   title='Sign Out'>
 
-						<img src='images/sign-out.svg'
-							 style={this.styles.signOutIcon}/>
-					</a>
+							<img src='images/sign-out.svg'
+								 style={this.styles.signOutIcon}/>
+						</a>
+					</div>
 				</div>
 			</header>
 		)

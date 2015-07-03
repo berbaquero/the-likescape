@@ -12,8 +12,7 @@ const Gallery = React.createClass({
 	getInitialState() {
 		return {
 			photos: [],
-			URL: URL.base + URL.userLikes + URL.accessToken +
-			UserToken.key + URL.count + this.props.count,
+			URL: URL.base + URL.userLikes + URL.accessToken + UserToken.key + URL.count + this.props.count,
 			modalPhotoURL: '',
 			showMoreButton: false,
 			moreButtonText: 'Load More'

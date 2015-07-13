@@ -1,5 +1,4 @@
 import React from 'react';
-import ImageInfo from './ImageInfo.jsx';
 
 const Image = React.createClass({
 

@@ -1,22 +1,25 @@
 {
-	"name": "TheLikescape",
-	"version": "0.0.0",
-	"description": "Simply browse your Instagram Likes",
-	"main": "index.js",
-	"dependencies": {
-		"6to5ify": "~4.0.0",
-		"browserify": "~8.1.3",
-		"react": "~0.12.2",
-		"watchify": "~2.3.0"
-	},
-	"appDir": "./src",
-	"buildDir": "./dist",
-	"scripts": {
-		"build-styles": "sass --update --force --style compressed $npm_package_appDir/styles:$npm_package_buildDir",
-		"watch-styles": "sass --watch $npm_package_appDir/styles:$npm_package_buildDir",
-		"watch-scripts": "watchify -t 6to5ify ./src/scripts/app.jsx -o ./dist/app.js -v",
-		"start": "npm run watch-styles & npm run watch-scripts"
-	},
-	"author": "Bernardo Baquero Stand",
-	"license": "MIT"
+  "name": "TheLikescape",
+  "version": "0.0.0",
+  "description": "Simply browse your Instagram Likes",
+  "main": "index.js",
+  "dependencies": {
+    "6to5ify": "~4.0.0",
+    "browserify": "~8.1.3",
+    "react": "~0.12.2",
+    "uglify-js": "^2.4.23",
+    "watchify": "~2.3.0"
+  },
+  "appDir": "./src",
+  "buildDir": "./dist",
+  "scripts": {
+    "build-styles": "sass --update --force --style compressed $npm_package_appDir/styles:$npm_package_buildDir",
+    "build-scripts": "NODE_ENV=production browserify $npm_package_appDir/scripts/app.jsx -t 6to5ify | uglifyjs -c > $npm_package_buildDir/app.js",
+    "watch-styles": "sass --watch $npm_package_appDir/styles:$npm_package_buildDir",
+    "watch-scripts": "watchify -t 6to5ify ./src/scripts/app.jsx -o ./dist/app.js -v",
+    "start": "npm run watch-styles & npm run watch-scripts",
+	"build": "npm run build-styles; npm run build-scripts"
+  },
+  "author": "Bernardo Baquero Stand",
+  "license": "MIT"
 }

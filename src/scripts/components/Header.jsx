@@ -65,7 +65,7 @@ const Header = React.createClass({
 
 	render() {
 		return (
-			<header>
+			<header className='ui-brdr-box'>
 				<div className='header-wrapper'>
 					<span style={this.styles.title}>The Likescape</span>
 

@@ -13,7 +13,7 @@ const Gallery = React.createClass({
 		return {
 			photos: [],
 			URL: URL.base + URL.userLikes + URL.accessToken + UserToken.key + URL.count + this.props.count,
-			modalPhotoURL: '',
+			modalPhotoData: '',
 			showMoreButton: false,
 			moreButtonText: 'Load More'
 		}
@@ -51,41 +51,39 @@ const Gallery = React.createClass({
 
 	showModal(photoURL) {
 		this.setState({
-			modalPhotoURL: photoURL
+			modalPhotoData: photoURL
 		});
 	},
 
 	closeModal() {
 		this.setState({
-			modalPhotoURL: ''
+			modalPhotoData: ''
 		});
 	},
 
 	render() {
-		let thisComponent = this,
-			zoomClass = 'zoom-' + thisComponent.props.zoom,
-			images = this.state.photos.map(function(photo, index) {
-				let imageURL = photo.images.standard_resolution.url;
-				return (
-					<Image data={photo}
-						   onClick={thisComponent.showModal.bind(null, imageURL)}
-						   key={index}/>
-				)
-			}),
-			moreButton = this.state.showMoreButton ?
-				<MoreButton onClick={this.loadMore}
-							text={this.state.moreButtonText}/> :
-				null,
-			modal = this.state.modalPhotoURL ?
-				<ImageModal photoURL={this.state.modalPhotoURL}
-							onRequestClose={this.closeModal}/> :
-				null;
+		const thisComponent = this,
+			zoomClass = 'zoom-' + thisComponent.props.zoom;
 
 		return (
 			<div className={'gallery ' + zoomClass}>
-				{images}
-				{moreButton}
-				{modal}
+				{this.state.photos.map(function(photo, index) {
+					return (
+						<Image data={photo}
+							   onClick={thisComponent.showModal.bind(null, photo)}
+							   key={index}/>
+					)
+				})}
+
+				{this.state.showMoreButton ?
+					<MoreButton onClick={this.loadMore}
+								text={this.state.moreButtonText}/> :
+					null}
+
+				{this.state.modalPhotoData ?
+					<ImageModal photo={this.state.modalPhotoData}
+								onRequestClose={this.closeModal}/> :
+					null}
 			</div>
 		);
 	}

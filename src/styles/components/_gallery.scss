@@ -1,0 +1,14 @@
+@import "../globals";
+
+.gallery {
+	margin-left: $spacing;
+	margin-bottom: 3em;
+	margin-top: $header-height;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}

@@ -66,7 +66,7 @@ const Gallery = React.createClass({
 			zoomClass = 'zoom-' + thisComponent.props.zoom;
 
 		return (
-			<div className={'gallery ' + zoomClass}>
+			<div className={'gallery ui-flx-wrap ' + zoomClass}>
 				{this.state.photos.map(function(photo, index) {
 					return (
 						<Image data={photo}

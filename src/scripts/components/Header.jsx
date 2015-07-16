@@ -66,7 +66,7 @@ const Header = React.createClass({
 	render() {
 		return (
 			<header className='ui-brdr-box'>
-				<div className='header-wrapper'>
+				<div className='header-wrapper ui-flx-spc-btwn-x ui-flx-cntr-y'>
 					<span style={this.styles.title}>The Likescape</span>
 
 					<input type="range"
@@ -76,7 +76,7 @@ const Header = React.createClass({
 						   onChange={this.handleRangeChange}
 						   style={this.styles.range}/>
 
-					<div className='header-options'>
+					<div className='ui-flx-cntr-x'>
 
 						<img src={this.state.imageURL}
 							 style={this.styles.avatar}

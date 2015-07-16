@@ -8,12 +8,12 @@ const Modal = React.createClass({
 		const imageURL = photo.images.standard_resolution.url;
 
 		return (
-			<div className='modal anim-reveal'
+			<div className='modal ui-flx-cntr-x ui-flx-cntr-y anim-reveal'
 				 onClick={this.props.onRequestClose}>
 
-				 <div className='ui-super-center'>
+				 <div className='ui-mrgn-x'>
 					 <img className='image-modal ui-img ui-mrgn-b'
-	 					 src={imageURL}/>
+	 					  src={imageURL}/>
 
 	 				 <ImageInfo user={photo.user}
 	  						    timestamp={photo.created_time}

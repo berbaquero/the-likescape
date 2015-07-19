@@ -19,7 +19,7 @@ const ImageInfo = React.createClass({
 				<TimeAgo timestamp={this.props.timestamp}/>
 				{locationName}
 				<a href={this.props.link}
-				   target='_black'>
+				   target='_blank'>
 					<img src='images/link.svg'
 						 className='external-link'
 						 title='See on Instagram.com'/>

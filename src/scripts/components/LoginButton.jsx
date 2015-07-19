@@ -4,7 +4,7 @@ import config from './../Config';
 
 const LoginButton = React.createClass({
 
-	requestURL: URL.auth + config.clientID + URL.redirectParam + URL.redirect + URL.responseType,
+	requestURL: URL.auth + config.clientID + URL.redirectParam + URL.appBase + URL.responseType,
 
 	render() {
 		return (

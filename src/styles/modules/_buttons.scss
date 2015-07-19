@@ -1,24 +1,30 @@
+$color1: #d4d7e7;
+$color2: #fafafb;
+$lightening: 2%;
+
 .btn-simple {
+	display: inline-block;
 	text-decoration: none;
 	font-size: 20px;
 	padding: .5em 1em;
 	border: 1px solid #888;
+	border-width: .5px;
 	color: #444;
 	text-shadow: 0 1px 0 white;
-	background-image: -webkit-linear-gradient(90deg, #bbb, #eee);
-	background-image: linear-gradient(0deg, #bbb, #eee);
+	background-image: -webkit-linear-gradient(90deg, $color1, $color2);
+	background-image: linear-gradient(0deg, $color1, $color2);
 	border-radius: 4px;
 	box-shadow: inset 0 2px 0 white, inset 0 -1px 0 #888;
 	cursor: pointer;
 }
 
 .btn-simple:hover {
-	background-image: -webkit-linear-gradient(90deg, silver, #f3f3f3);
-	background-image: linear-gradient(0deg, silver, #f3f3f3);
+	background-image: -webkit-linear-gradient(90deg, lighten($color1, $lightening), lighten($color2, $lightening));
+	background-image: linear-gradient(0deg, lighten($color1, $lightening), lighten($color2, $lightening));
 }
 
 .btn-simple:active {
-	background-color: #bbb;
+	background-color: darken($color1, 1%);
 	background-image: none;
 	box-shadow: inset 0 1px 0 #888;
 }

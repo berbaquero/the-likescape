@@ -29,8 +29,7 @@ const Header = React.createClass({
 			width: 64
 		},
 		title: {
-			fontWeight: '500',
-			color: '#748695'
+			fontWeight: '500'
 		}
 	},
 

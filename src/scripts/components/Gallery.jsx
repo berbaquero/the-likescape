@@ -66,25 +66,31 @@ const Gallery = React.createClass({
 			zoomClass = 'zoom-' + thisComponent.props.zoom;
 
 		return (
-			<div className={'gallery ui-flx-wrap ' + zoomClass}>
-				{this.state.photos.map(function(photo, index) {
-					return (
-						<Image data={photo}
-							   onClick={thisComponent.showModal.bind(null, photo)}
-							   key={index}/>
-					)
-				})}
+			<div>
+				<div className={'gallery ui-flx-wrap ' + zoomClass}>
+					{this.state.photos.map(function(photo, index) {
+						return (
+							<Image data={photo}
+								   onClick={thisComponent.showModal.bind(null, photo)}
+								   key={index}/>
+						)
+					})}
+
+					{this.state.modalPhotoData ?
+						<ImageModal photo={this.state.modalPhotoData}
+									onRequestClose={this.closeModal}/>
+						: ''}
+				</div>
 
 				{this.state.showMoreButton ?
-					<MoreButton onClick={this.loadMore}
-								text={this.state.moreButtonText}/> :
-					null}
-
-				{this.state.modalPhotoData ?
-					<ImageModal photo={this.state.modalPhotoData}
-								onRequestClose={this.closeModal}/> :
-					null}
+					<div className='ui-flx-wrap'>
+						<MoreButton onClick={this.loadMore}
+								text={this.state.moreButtonText}/>
+					</div>
+					: ''}
 			</div>
+
+
 		);
 	}
 });

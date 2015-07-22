@@ -14,7 +14,7 @@ const ImageInfo = React.createClass({
 		}
 
 		return (
-			<div className='image-info'>
+			<div className='image-info ui-txt-bold'>
 				<span className="username">{userName} &sdot; </span>
 				<TimeAgo timestamp={this.props.timestamp}/>
 				{locationName}

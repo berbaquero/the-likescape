@@ -66,7 +66,8 @@ const Header = React.createClass({
 		return (
 			<header className='ui-brdr-box'>
 				<div className='header-wrapper ui-flx-spc-btwn-x ui-flx-cntr-y'>
-					<span style={this.styles.title}>The Likescape</span>
+					<a href='/'
+					   className='ui-txt-bold ui-no-underln ui-color-main'>The Likescape</a>
 
 					<input type="range"
 						   min='1'

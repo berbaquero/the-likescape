@@ -15,7 +15,7 @@ const Gallery = React.createClass({
 			URL: URL.base + URL.userLikes + URL.accessToken + UserToken.key + URL.count + this.props.count,
 			modalPhotoData: '',
 			showMoreButton: false,
-			moreButtonText: 'Load More'
+			loadingMore: false
 		}
 	},
 
@@ -34,13 +34,13 @@ const Gallery = React.createClass({
 			photos: nextPhotos,
 			URL: nextURL,
 			showMoreButton: true,
-			moreButtonText: 'Load More'
+			loadingMore: false
 		});
 	},
 
 	loadMore() {
 		this.setState({
-			moreButtonText: 'Loading...'
+			loadingMore: true
 		});
 		this.makeRequest(this.state.URL);
 	},
@@ -85,7 +85,7 @@ const Gallery = React.createClass({
 				{this.state.showMoreButton ?
 					<div className='ui-flx-wrap'>
 						<MoreButton onClick={this.loadMore}
-								text={this.state.moreButtonText}/>
+									loading={this.state.loadingMore}/>
 					</div>
 					: ''}
 			</div>

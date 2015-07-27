@@ -20,3 +20,28 @@
 	-webkit-animation: reveal 250ms ease 1ms both;
 	animation: reveal 250ms ease 1ms both;
 }
+
+@keyframes loading {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 50px 0;
+	}
+}
+
+.loading {
+	$opacity: .3;
+	background-image: linear-gradient(
+		to left,
+		rgba(255, 255, 255, $opacity) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255, 255, 255, $opacity) 50%,
+		rgba(255, 255, 255, $opacity) 75%,
+		transparent 75%,
+		transparent
+	) !important;
+	background-size: 50px;
+	animation: loading 1000ms linear infinite;
+}

@@ -2,4 +2,4 @@
 
 > A simple landscape of your Instagram likes.
 
-Web-app quicky built for fun to get my hands dirty with React.
+Install it from, and rate it on the [Firefox Marketplace](https://marketplace.firefox.com/), [here](https://marketplace.firefox.com/app/the-likescape/).

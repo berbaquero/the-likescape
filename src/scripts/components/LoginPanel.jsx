@@ -72,12 +72,14 @@ const LoginPanel = React.createClass({
 
 				<section className='ui-mrgn-t-5'>
 					<a href="https://medium.com/@berbaquero/this-is-the-likescape-759b0aefe43d"
+					   target='_blank'
 					   className='ui-color-main'>
 						Read about The Likescape</a>
 				</section>
 
 				<footer className='ui-mrgn-t-5'>
 					<a href="http://berbaquero.com/"
+					   target='_blank'
 					   className='ui-link ui-heading ui-color-main ui-txt-bold my-home-link'>
 						Bernardo Baquero Stand</a>
 				</footer>

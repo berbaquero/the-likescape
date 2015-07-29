@@ -65,7 +65,7 @@ const Header = React.createClass({
 	render() {
 		return (
 			<header className='ui-brdr-box'>
-				<div className='header-wrapper ui-flx-spc-btwn-x ui-flx-cntr-y'>
+				<div className='header-wrapper ui-brdr-b ui-brdr-clr-sec ui-flx-spc-btwn-x ui-flx-cntr-y'>
 					<a href='/'
 					   className='ui-txt-bold ui-no-underln ui-color-main'>The Likescape</a>
 

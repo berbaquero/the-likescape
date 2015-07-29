@@ -45,29 +45,42 @@ const LoginPanel = React.createClass({
 		return (
 			<div style={this.styles.panel}>
 				<img src='images/icons/icon128.png'
-					 srcSet='images/icons/icon256.png 2x' />
+					 srcSet='images/icons/icon256.png 2x'/>
 
 				<h1>The Likescape</h1>
 
-				<div className='ui-mrgn-y'>
+				<section className='ui-mrgn-y'>
 					<p>
 						View all the Instagram pictures you have
 						<span style={this.styles.heart}> &hearts;</span>
 						liked.
 					</p>
 					<LoginButton/>
-				</div>
+				</section>
 
 				{this.state.showInstallButton ?
-					(	<div className='ui-mrgn-y'
-							 style={{marginTop: '5em'}}>
+					(    <section className='ui-mrgn-y ui-mrgn-t-5'>
 							<p>Optionally, install The Likescape as a standalone app</p>
 							<button className='btn-simple'
 									onClick={this.requestInstall}>🚀 Install App</button>
-						</div>
+						</section>
 					)
 					: ''
 				}
+
+				<hr className='ui-mrgn-t-3 ui-w-50 ui-brdr ui-brdr-clr-sec'/>
+
+				<section className='ui-mrgn-t-5'>
+					<a href="https://medium.com/@berbaquero/this-is-the-likescape-759b0aefe43d"
+					   className='ui-color-main'>
+						Read about The Likescape</a>
+				</section>
+
+				<footer className='ui-mrgn-t-5'>
+					<a href="http://berbaquero.com/"
+					   className='ui-link ui-heading ui-color-main ui-txt-bold my-home-link'>
+						Bernardo Baquero Stand</a>
+				</footer>
 			</div>
 		)
 	}

@@ -1,5 +1,16 @@
+@import "../globals";
+
 .ui-brdr-box {
 	box-sizing: border-box;
+}
+
+.ui-link {
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
 }
 
 .ui-img {
@@ -20,6 +31,14 @@
 		top: 1em;
 		bottom: 1em;
 	}
+}
+
+.ui-mrgn-t-3 {
+	margin-top: 3em;
+}
+
+.ui-mrgn-t-5 {
+	margin-top: 5em;
 }
 
 .ui-mrgn-b {
@@ -65,7 +84,7 @@
 }
 
 .ui-color-main {
-	color: #748695;
+	color: $main-color;
 }
 
 .ui-txt-bold {
@@ -78,4 +97,23 @@
 
 .ui-w-50 {
   width: 50%;
+}
+
+.ui-brdr {
+	border-width: 2px;
+	border-style: solid;
+}
+
+.ui-brdr-b {
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+}
+
+.ui-brdr-clr-sec {
+	border-color: $secondary-color;
+}
+
+.ui-heading {
+	text-transform: uppercase;
+	letter-spacing: 3px;
 }

@@ -21,6 +21,15 @@
 	animation: reveal 250ms ease 1ms both;
 }
 
+@-webkit-keyframes loading {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 50px 0;
+	}
+}
+
 @keyframes loading {
 	0% {
 		background-position: 0 0;
@@ -43,5 +52,6 @@
 		transparent
 	) !important;
 	background-size: 50px;
+	-webkit-animation: loading 1000ms linear infinite;
 	animation: loading 1000ms linear infinite;
 }

@@ -32,5 +32,5 @@ export default function(epoch) {
 		return months + (months > 1 ? ' months' : ' month');
 	}
 	years = Math.floor(years);
-	return years + (years > 1 ? ' years' : ' years');
+	return years + (years > 1 ? ' years' : ' year');
 };

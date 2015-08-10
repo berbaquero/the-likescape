@@ -11,15 +11,15 @@ const Modal = React.createClass({
 			<div className='modal ui-flx-cntr-x ui-flx-cntr-y anim-reveal'
 				 onClick={this.props.onRequestClose}>
 
-				 <div className='ui-mrgn-x'>
-					 <img className='image-modal ui-img ui-mrgn-b'
-	 					  src={imageURL}/>
+				<div className='ui-mrgn-x'>
+					<img className='image-modal ui-img ui-mrgn-b'
+						 src={imageURL}/>
 
-	 				 <ImageInfo user={photo.user}
-	  						    timestamp={photo.created_time}
-	  						    location={photo.location}
-	  						    link={photo.link}/>
-				 </div>
+					<ImageInfo user={photo.user}
+							   timestamp={photo.created_time}
+							   location={photo.location}
+							   link={photo.link}/>
+				</div>
 			</div>
 		)
 	}

@@ -61,12 +61,20 @@ const Gallery = React.createClass({
 		});
 	},
 
+	handleKeyPress(ev) {
+		if (ev.which === 13 &&
+			this.state.modalPhotoData) {
+			ev.preventDefault();
+			this.closeModal();
+		}
+	},
+
 	render() {
 		const thisComponent = this,
 			zoomClass = 'zoom-' + thisComponent.props.zoom;
 
 		return (
-			<div>
+			<div onKeyPress={this.handleKeyPress}>
 				<div className={'gallery ui-flx-wrap ' + zoomClass}>
 					{this.state.photos.map(function(photo, index) {
 						return (

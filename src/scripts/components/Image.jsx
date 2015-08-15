@@ -24,7 +24,7 @@ const Image = React.createClass({
 		var data = this.props.data;
 
 		return (
-			<a className={'ui-blck ' + (data.type === 'video' ? 'image-wrap video-overlay' : 'image-wrap')}
+			<a className={'ui-blck ui-btn ' + (data.type === 'video' ? 'image-wrap video-overlay' : 'image-wrap')}
 			   href='#'
 			   onClick={this.handleClick}>
 

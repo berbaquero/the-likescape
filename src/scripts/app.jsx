@@ -9,7 +9,7 @@ const App = React.createClass({
 	getInitialState() {
 		return {
 			authenticated: false,
-			galleryZoom: 2
+			galleryZoom: localStorage.getItem('zoom') || 2
 		}
 	},
 
@@ -24,6 +24,7 @@ const App = React.createClass({
 		this.setState({
 			galleryZoom: range
 		});
+		localStorage.setItem('zoom', range);
 	},
 
 	render() {

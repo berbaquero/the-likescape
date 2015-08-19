@@ -4,7 +4,9 @@ const Image = React.createClass({
 
 	getInitialState() {
 		return {
-			styles: {}
+			styles: {
+				opacity: 0
+			}
 		}
 	},
 
@@ -30,7 +32,7 @@ const Image = React.createClass({
 
 				<img src={data.images.standard_resolution.url}
 					 onLoad={this.revealAnimation}
-					 className='image-item'
+					 className='image-item ui-blck'
 					 style={this.state.styles}/>
 			</a>
 		)

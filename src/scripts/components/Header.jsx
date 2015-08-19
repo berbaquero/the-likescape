@@ -11,25 +11,16 @@ const Header = React.createClass({
 
 	styles: {
 		avatar: {
-			borderRadius: '50%',
-			width: 40,
-			display: 'block',
-			alignSelf: 'center'
+			width: 40
 		},
 		signOut: {
-			width: 40,
-			display: 'block',
-			textAlign: 'center',
-			alignSelf: 'center'
+			width: 40
 		},
 		signOutIcon: {
 			width: 20
 		},
 		range: {
 			width: 64
-		},
-		title: {
-			fontWeight: '500'
 		}
 	},
 
@@ -65,7 +56,7 @@ const Header = React.createClass({
 	render() {
 		return (
 			<header className='ui-brdr-box'>
-				<div className='header-wrapper ui-brdr-b ui-brdr-clr-sec ui-flx-spc-btwn-x ui-flx-cntr-y'>
+				<div className='header-wrapper ui-brdr-b ui-brdr-clr-sec ui-flx ui-flx-spc-btwn-x ui-flx-cntr-y'>
 					<a href='/'
 					   className='ui-txt-bold ui-no-underln ui-color-main'>The Likescape</a>
 
@@ -76,13 +67,15 @@ const Header = React.createClass({
 						   onChange={this.handleRangeChange}
 						   style={this.styles.range}/>
 
-					<div className='ui-flx-cntr-x'>
+					<div className='ui-flx ui-flx-cntr-x ui-flx-cntr-y'>
 
 						<img src={this.state.imageURL}
+							 className='ui-blck ui-circle-corner'
 							 style={this.styles.avatar}
 							 title={this.state.userName}/>
 
 						<a href='#sign-out'
+						   className='ui-flx ui-flx-cntr-x ui-flx-cntr-y'
 						   onClick={this.signOut}
 						   style={this.styles.signOut}
 						   title='Sign Out'>

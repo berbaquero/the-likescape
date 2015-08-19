@@ -7,9 +7,6 @@ const manifestURL = URLs.appBase + URLs.manifest;
 const LoginPanel = React.createClass({
 
 	styles: {
-		panel: {
-			textAlign: 'center'
-		},
 		heart: {
 			color: '#c6544f'
 		}
@@ -43,7 +40,7 @@ const LoginPanel = React.createClass({
 
 	render() {
 		return (
-			<div style={this.styles.panel}>
+			<div className='ui-txt-cntr'>
 				<img src='images/icons/icon128.png'
 					 srcSet='images/icons/icon256.png 2x'/>
 

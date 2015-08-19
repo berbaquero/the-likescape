@@ -8,7 +8,7 @@ const Modal = React.createClass({
 		const imageURL = photo.images.standard_resolution.url;
 
 		return (
-			<div className='modal ui-flx-cntr-x ui-flx-cntr-y anim-reveal'
+			<div className='modal ui-flx ui-flx-cntr-x ui-flx-cntr-y anim-reveal'
 				 onClick={this.props.onRequestClose}>
 
 				<div className='ui-mrgn-x'>

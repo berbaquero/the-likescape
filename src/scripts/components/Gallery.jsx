@@ -75,7 +75,7 @@ const Gallery = React.createClass({
 
 		return (
 			<div onKeyPress={this.handleKeyPress}>
-				<div className={'gallery ui-flx-wrap ' + zoomClass}>
+				<div className={'gallery ui-flx ui-flx-wrap ' + zoomClass}>
 					{this.state.photos.map(function(photo, index) {
 						return (
 							<Image data={photo}
@@ -91,7 +91,7 @@ const Gallery = React.createClass({
 				</div>
 
 				{this.state.showMoreButton ?
-					<div className='ui-flx-wrap'>
+					<div className='ui-flx ui-flx-wrap'>
 						<MoreButton onClick={this.loadMore}
 									loading={this.state.loadingMore}/>
 					</div>
